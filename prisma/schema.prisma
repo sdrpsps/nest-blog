@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  // 如果是云端服务器数据库，需要加上shadowDatabaseUrl
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model user {
+  id       Int    @id @default(autoincrement()) @db.UnsignedInt
+  name     String @unique
+  password String
+}
+
+model article {
+  id      Int    @id @default(autoincrement()) @db.UnsignedInt
+  title   String
+  content String @db.Text
+}
