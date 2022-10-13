@@ -6,7 +6,7 @@
  * @FilePath: /nest-blog/prisma/seed.ts
  * @Description: 数据库自动填充数据
  * 
- * Copyright (c) 2022 by 儒韵电商, All Rights Reserved. 
+ * Copyright (c) 2022 by sdrpsps, All Rights Reserved. 
  */
 import { PrismaClient } from '@prisma/client'
 import { hash } from 'argon2'
