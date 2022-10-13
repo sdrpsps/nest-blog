@@ -11,7 +11,7 @@ export class AuthController {
 
     @Post('register')
     register(@Body() dto: RegisterDto) {
-        return dto
+        return this.auth.register(dto)
     }
 
     @Post('login')

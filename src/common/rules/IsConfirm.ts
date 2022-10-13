@@ -2,7 +2,7 @@
  * @Author: zhouxiangyang
  * @Email: hchow@hchow.icu
  * @Date: 2022-10-13 16:10:41
- * @LastEditTime: 2022-10-13 16:18:11
+ * @LastEditTime: 2022-10-13 16:51:27
  * @FilePath: /nest-blog/src/common/rules/IsConfirm.ts
  * @Description: 注册接口验证密码和确认密码是否一致
  * 
@@ -20,7 +20,7 @@ export function IsConfirm(validationOptions?: ValidationOptions) {
       options: validationOptions,
       validator: {
         async validate(value: any, args: ValidationArguments) {
-          return Boolean(value === args.object[args.property + '_confirm'])
+          return Boolean(value === args.object[args.property])
         },
       },
     });
