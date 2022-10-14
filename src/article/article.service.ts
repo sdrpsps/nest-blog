@@ -40,7 +40,7 @@ export class ArticleService {
     const article = await this.prisma.article.findUnique({
       where: { id }
     })
-    return article
+    return { data: article }
   }
 
   // 修改文章

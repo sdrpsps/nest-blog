@@ -15,7 +15,7 @@ export class ArticleController {
 
   // 文章列表
   @Get()
-  findAll(@Query() page: string) {
+  findAll(@Query('page') page: string) {
     return this.articleService.findAll(+page);
   }
 

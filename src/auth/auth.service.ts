@@ -18,12 +18,7 @@ export class AuthService {
                 password: await hash(dto.password)
             }
         })
-        const res = {
-            success: true,
-            code: 201,
-            message: "注册成功"
-        }
-        return res
+        return { message: "注册成功" }
     }
 
     // 登录
@@ -43,10 +38,13 @@ export class AuthService {
     // 生成 Jwt Token
     async token({ name, id }) {
         return {
-            token: await this.jwt.signAsync({
-                name,
-                sub: id
-            })
+            data: {
+                token: await this.jwt.signAsync({
+                    name,
+                    sub: id
+                })
+            },
+            message: "登录成功"
         }
     }
 }
