@@ -2,7 +2,7 @@
  * @Author: zhouxiangyang
  * @Email: hchow@hchow.icu
  * @Date: 2022-10-14 11:33:51
- * @LastEditTime: 2022-10-14 13:34:27
+ * @LastEditTime: 2022-10-14 15:59:12
  * @FilePath: /nest-blog/src/http-exception.filter.ts
  * @Description: 全局异常过滤器
  * 
@@ -18,14 +18,15 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
     const status = exception.getStatus();
-    const data = exception.getResponse()
+    const message = exception.getResponse()
 
     response
       .status(status)
       .json({
         statusCode: status,
         success: false,
-        data: data,
+        message,
+        data: null,
         timestamp: new Date().getTime(),
         path: request.url,
       });

@@ -43,7 +43,6 @@ export class AuthService {
     // 生成 Jwt Token
     async token({ name, id }) {
         return {
-            message: '成功',
             token: await this.jwt.signAsync({
                 name,
                 sub: id

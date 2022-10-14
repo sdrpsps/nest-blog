@@ -2,7 +2,7 @@
  * @Author: zhouxiangyang
  * @Email: hchow@hchow.icu
  * @Date: 2022-10-13 14:18:55
- * @LastEditTime: 2022-10-14 13:05:28
+ * @LastEditTime: 2022-10-14 15:59:52
  * @FilePath: /nest-blog/src/common/validate.ts
  * @Description: 自定义验证管道
  * 
@@ -19,6 +19,6 @@ export default class Validate extends ValidationPipe {
             message[error.property] = Object.values(error.constraints)[0]
         })
 
-        throw new HttpException({ message }, HttpStatus.UNPROCESSABLE_ENTITY)
+        throw new HttpException(message, HttpStatus.UNPROCESSABLE_ENTITY)
     }
 }
