@@ -1,7 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { ArticleService } from './article.service';
 import { CreateArticleDto } from './dto/create-article.dto';
-import FindAllDto from './dto/findAll.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
 
 @Controller('article')
@@ -16,8 +15,7 @@ export class ArticleController {
 
   // 文章列表
   @Get()
-  findAll(@Query() dto: FindAllDto) {
-    const { page } = dto
+  findAll(@Query() page: string) {
     return this.articleService.findAll(+page);
   }
 

@@ -11,8 +11,11 @@ export class ArticleService {
   }
 
   // 添加文章
-  create(createArticleDto: CreateArticleDto) {
-    return 'This action adds a new article';
+  async create(createArticleDto: CreateArticleDto) {
+    const article = await this.prisma.article.create({
+      data: createArticleDto
+    })
+    return article
   }
 
   // 文章列表
@@ -33,17 +36,27 @@ export class ArticleService {
   }
 
   // 文章详情
-  findOne(id: number) {
-    return `This action returns a #${id} article`;
+  async findOne(id: number) {
+    const article = await this.prisma.article.findUnique({
+      where: { id }
+    })
+    return article
   }
 
   // 修改文章
-  update(id: number, updateArticleDto: UpdateArticleDto) {
-    return `This action updates a #${id} article`;
+  async update(id: number, updateArticleDto: UpdateArticleDto) {
+    const article = await this.prisma.article.update({
+      where: { id },
+      data: updateArticleDto
+    })
+    return article
   }
 
   // 删除文章
   remove(id: number) {
-    return `This action removes a #${id} article`;
+    const article = this.prisma.article.delete({
+      where: { id }
+    })
+    return
   }
 }
