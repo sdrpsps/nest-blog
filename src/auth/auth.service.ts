@@ -1,6 +1,6 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { hash } from 'argon2';
+import { hash, verify } from 'argon2';
 import { PrismaService } from 'src/prisma/prisma.service';
 import LoginDto from './dto/login.dto';
 import RegisterDto from './dto/register.dto';
@@ -28,7 +28,16 @@ export class AuthService {
 
     // 登录
     async login(dto: LoginDto) {
-
+        const user = await this.prisma.user.findUnique({
+            where: {
+                name: dto.name
+            }
+        })
+        // 校验密码
+        if (!(await verify(user.password, dto.password))) {
+            throw new BadRequestException("密码错误")
+        }
+        return this.token(user)
     }
 
     // 生成 Jwt Token

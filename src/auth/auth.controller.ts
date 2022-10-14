@@ -8,14 +8,16 @@ export class AuthController {
     constructor(private auth: AuthService) {
 
     }
-
+    
+    // 注册
     @Post('register')
     register(@Body() dto: RegisterDto) {
         return this.auth.register(dto)
     }
 
+    // 登录
     @Post('login')
     login(@Body() dto: LoginDto) {
-        return dto
+        return this.auth.login(dto)
     }
 }
