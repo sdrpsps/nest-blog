@@ -1,18 +1,8 @@
 /*
  * @Author: zhouxiangyang
  * @Email: hchow@hchow.icu
- * @Date: 2022-10-14 10:40:15
- * @LastEditTime: 2022-10-14 10:40:15
- * @FilePath: /nest-blog/src/common/rules/IsExists.ts
- * @Description: 
- * 
- * Copyright (c) 2022 by 儒韵电商, All Rights Reserved. 
- */
-/*
- * @Author: zhouxiangyang
- * @Email: hchow@hchow.icu
  * @Date: 2022-10-13 14:36:20
- * @LastEditTime: 2022-10-13 16:14:19
+ * @LastEditTime: 2022-10-14 11:26:09
  * @FilePath: /nest-blog/src/common/rules/IsExists.ts
  * @Description: 查找数据库中是否存在用户
  * 

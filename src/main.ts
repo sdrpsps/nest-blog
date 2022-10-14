@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import Validate from './common/validate';
+import { HttpExceptionFilter } from './http-exception.filter';
 import { TransformInterceptor } from './transform.interceptor';
 
 async function bootstrap() {
@@ -9,6 +10,8 @@ async function bootstrap() {
   app.useGlobalPipes(new Validate())
   // 全局拦截器
   app.useGlobalInterceptors(new TransformInterceptor())
+  // 全局异常过滤器
+  app.useGlobalFilters(new HttpExceptionFilter())
   await app.listen(3000);
 }
 bootstrap();
