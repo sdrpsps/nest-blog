@@ -19,10 +19,6 @@ export default class Validate extends ValidationPipe {
             message[error.property] = Object.values(error.constraints)[0]
         })
 
-        throw new HttpException({
-            success: false,
-            message
-        },
-            HttpStatus.UNPROCESSABLE_ENTITY)
+        throw new HttpException({ message }, HttpStatus.UNPROCESSABLE_ENTITY)
     }
 }

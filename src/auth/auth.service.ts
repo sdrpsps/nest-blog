@@ -1,4 +1,4 @@
-import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { hash, verify } from 'argon2';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -35,7 +35,7 @@ export class AuthService {
         })
         // 校验密码
         if (!(await verify(user.password, dto.password))) {
-            throw new BadRequestException("密码错误")
+            throw new HttpException({ message: { password: "密码错误" } }, HttpStatus.FORBIDDEN)
         }
         return this.token(user)
     }
@@ -43,6 +43,7 @@ export class AuthService {
     // 生成 Jwt Token
     async token({ name, id }) {
         return {
+            message: '成功',
             token: await this.jwt.signAsync({
                 name,
                 sub: id
