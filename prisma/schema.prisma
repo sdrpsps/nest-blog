@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
   // 如果是云端服务器数据库，需要加上shadowDatabaseUrl
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
@@ -18,8 +18,16 @@ model user {
   password String
 }
 
+model category {
+  id       Int       @id @default(autoincrement()) @db.UnsignedInt
+  title    String
+  articles article[]
+}
+
 model article {
-  id      Int    @id @default(autoincrement()) @db.UnsignedInt
-  title   String
-  content String @db.Text
+  id         Int      @id @default(autoincrement()) @db.UnsignedInt
+  title      String
+  content    String   @db.Text
+  category   category @relation(fields: [categoryId], references: [id])
+  categoryId Int      @db.UnsignedInt
 }
