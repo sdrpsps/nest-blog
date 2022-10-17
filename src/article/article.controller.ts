@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, HttpException, HttpStatus } from '@nestjs/common';
 import { ArticleService } from './article.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
@@ -16,12 +16,17 @@ export class ArticleController {
   // 文章列表
   @Get()
   findAll(@Query('page') page: string) {
+    if (!page) page = '1'
     return this.articleService.findAll(+page);
   }
 
   // 文章详情
   @Get(':id')
   findOne(@Param('id') id: string) {
+
+    if (isNaN(+id)) {
+      throw new HttpException({ id: '参数只能为数字' }, HttpStatus.UNPROCESSABLE_ENTITY)
+    }
     return this.articleService.findOne(+id);
   }
 

@@ -19,7 +19,7 @@ export class ArticleService {
   }
 
   // 文章列表
-  async findAll(page = 1) {
+  async findAll(page: number) {
     // 每页总数
     const pageSize = +this.config.get('ARTICLE_PAGE_ROW')
     // 文章列表
