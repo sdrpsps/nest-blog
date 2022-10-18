@@ -13,7 +13,7 @@ export class ArticleService {
   // 添加文章
   async create(createArticleDto: CreateArticleDto) {
     const article = await this.prisma.article.create({
-      data: createArticleDto
+      data: { ...createArticleDto, categoryId: +createArticleDto.categoryId }
     })
     return { message: "添加成功" }
   }
@@ -47,14 +47,14 @@ export class ArticleService {
   async update(id: number, updateArticleDto: UpdateArticleDto) {
     const article = await this.prisma.article.update({
       where: { id },
-      data: updateArticleDto
+      data: { ...updateArticleDto, categoryId: +updateArticleDto.categoryId }
     })
     return { message: "修改成功" }
   }
 
   // 删除文章
-  remove(id: number) {
-    const article = this.prisma.article.delete({
+  async remove(id: number) {
+    const article = await this.prisma.article.delete({
       where: { id }
     })
     return { message: "删除成功" }

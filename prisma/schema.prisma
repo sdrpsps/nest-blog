@@ -28,6 +28,6 @@ model article {
   id         Int      @id @default(autoincrement()) @db.UnsignedInt
   title      String
   content    String   @db.Text
-  category   category @relation(fields: [categoryId], references: [id])
+  category   category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId Int      @db.UnsignedInt
 }

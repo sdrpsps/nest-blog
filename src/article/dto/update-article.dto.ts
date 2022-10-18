@@ -8,4 +8,7 @@ export class UpdateArticleDto extends PartialType(CreateArticleDto) {
 
     @IsNotEmpty({ message: "内容不能为空" })
     content: string
+
+    @IsNotEmpty({ message: "栏目ID不能为空" })
+    categoryId: number
 }
