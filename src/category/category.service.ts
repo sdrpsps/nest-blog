@@ -40,7 +40,6 @@ export class CategoryService {
   }
 
   async remove(id: number) {
-    console.log(id);
     const category = await this.prisma.category.delete({
       where: { id }
     })
