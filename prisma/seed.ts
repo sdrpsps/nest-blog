@@ -2,7 +2,7 @@
  * @Author: zhouxiangyang
  * @Email: hchow@hchow.icu
  * @Date: 2022-10-13 10:10:23
- * @LastEditTime: 2022-10-17 15:15:18
+ * @LastEditTime: 2022-10-27 11:00:33
  * @FilePath: /nest-blog/prisma/seed.ts
  * @Description: 数据库自动填充数据
  * 
@@ -18,7 +18,8 @@ async function run() {
     await prisma.user.create({
         data: {
             name: 'admin',
-            password: await hash('123456')
+            password: await hash('123456'),
+            role:'admin'
         }
     })
 

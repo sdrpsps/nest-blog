@@ -12,7 +12,7 @@ import { JwtStrategy } from './strategy/jwt.strategy';
     useFactory: (config: ConfigService) => {
       return {
         secret: config.get('TOKEN_SECRET'),
-        signOptions: { expiresIn: '1d' }
+        signOptions: { expiresIn: '10d' }
       }
     }
   })],
