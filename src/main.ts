@@ -15,6 +15,8 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter())
   // API 前缀
   app.setGlobalPrefix('api')
+  // 静态目录
+  app.useStaticAssets('uploads', { prefix: '/uploads' })
   await app.listen(3000);
 }
 bootstrap();

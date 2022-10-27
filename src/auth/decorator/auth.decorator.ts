@@ -6,7 +6,7 @@
  * @FilePath: /nest-blog/src/auth/decorator/auth.decorator.ts
  * @Description: 聚合装饰器
  * 
- * Copyright (c) 2022 by 儒韵电商, All Rights Reserved. 
+ * Copyright (c) 2022 by sdrpsps, All Rights Reserved. 
  */
 
 import { applyDecorators, SetMetadata, UseGuards } from "@nestjs/common";
