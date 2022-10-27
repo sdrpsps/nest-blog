@@ -2,7 +2,7 @@
  * @Author: zhouxiangyang
  * @Email: hchow@hchow.icu
  * @Date: 2022-10-14 11:33:51
- * @LastEditTime: 2022-10-14 16:47:18
+ * @LastEditTime: 2022-10-27 17:35:45
  * @FilePath: /nest-blog/src/http-exception.filter.ts
  * @Description: 全局异常过滤器
  * 
@@ -23,11 +23,12 @@ export class HttpExceptionFilter implements ExceptionFilter {
     response
       .status(status)
       .json({
-        code: status,
-        success: false,
-        message,
-        data: null,
-        path: request.url,
+        meta: {
+          code: status,
+          success: false,
+          message
+        },
+        data: null
       });
   }
 }

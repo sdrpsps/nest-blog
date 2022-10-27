@@ -11,7 +11,8 @@ export class RoleGuard implements CanActivate {
     /* 打印当前用户 */
     const user = context.switchToHttp().getRequest().user as user
     /* 打印元数据的角色 */
-    const roles = this.reflector.getAllAndMerge<Role[]>('roles', [context.getHandler(), context.getClass()])
-    return roles.length ? roles.some((role) => { user.role === role }) : true;
+    const roles = this.reflector.getAllAndMerge<Role[]>('roles', [context.getHandler(), context.getClass()]) as string[]
+
+    return roles.length ? roles.includes(user.role) : true;
   }
 }

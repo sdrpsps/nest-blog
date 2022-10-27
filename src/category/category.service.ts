@@ -14,7 +14,7 @@ export class CategoryService {
         title: createCategoryDto.title
       }
     })
-    return { message: "添加栏目成功" }
+    return
   }
 
   async findAll() {
@@ -36,13 +36,13 @@ export class CategoryService {
       },
       where: { id }
     })
-    return { message: "修改成功" }
+    return
   }
 
   async remove(id: number) {
     const category = await this.prisma.category.delete({
       where: { id }
     })
-    return { message: "删除成功" }
+    return
   }
 }

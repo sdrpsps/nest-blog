@@ -15,7 +15,7 @@ export class ArticleService {
     const article = await this.prisma.article.create({
       data: { ...createArticleDto, categoryId: +createArticleDto.categoryId }
     })
-    return { message: "添加成功" }
+    return
   }
 
   // 文章列表
@@ -49,7 +49,7 @@ export class ArticleService {
       where: { id },
       data: { ...updateArticleDto, categoryId: +updateArticleDto.categoryId }
     })
-    return { message: "修改成功" }
+    return
   }
 
   // 删除文章
@@ -57,6 +57,6 @@ export class ArticleService {
     const article = await this.prisma.article.delete({
       where: { id }
     })
-    return { message: "删除成功" }
+    return
   }
 }

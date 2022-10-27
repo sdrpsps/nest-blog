@@ -2,7 +2,7 @@
  * @Author: zhouxiangyang
  * @Email: hchow@hchow.icu
  * @Date: 2022-10-14 10:28:26
- * @LastEditTime: 2022-10-14 16:46:08
+ * @LastEditTime: 2022-10-27 17:28:13
  * @FilePath: /nest-blog/src/transform.interceptor.ts
  * @Description: 全局拦截器
  * 
@@ -18,21 +18,15 @@ export class TransformInterceptor implements NestInterceptor {
         const code = context.switchToHttp().getResponse().statusCode
         return next.handle().pipe(
             map((data) => {
-                return data?.meta ?
-                    {
+                return {
+                    meta: {
                         code,
+                        message: "成功",
                         success: true,
-                        message: data?.message ? data.message : '成功',
-                        meta: data.meta,
-                        data: data?.data ? data.data : null
-                    }
-                    :
-                    {
-                        code,
-                        success: true,
-                        message: data?.message ? data.message : '成功',
-                        data: data?.data ? data.data : null
-                    }
+                        ...data?.meta,
+                    },
+                    data: data?.data ? data.data : null
+                }
             }),
         )
     }
