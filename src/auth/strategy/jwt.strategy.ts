@@ -8,20 +8,19 @@
  * 
  * Copyright (c) 2022 by sdrpsps, All Rights Reserved. 
  */
-import { PrismaService } from '../../prisma/prisma.service';
-import { ConfigService } from '@nestjs/config';
-import { ExtractJwt, Strategy } from 'passport-jwt';
-import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
+import { PassportStrategy } from '@nestjs/passport';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
-    constructor(configService: ConfigService, private prisma: PrismaService) {
+    constructor(private prisma: PrismaService) {
         super({
             //解析用户提交的header中的Bearer Token数据
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
             //加密码的 secret
-            secretOrKey: configService.get('TOKEN_SECRET'),
+            secretOrKey: process.env.TOKEN_SECRET,
         });
     }
 

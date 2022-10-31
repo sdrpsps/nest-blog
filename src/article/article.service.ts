@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
 
 @Injectable()
 export class ArticleService {
-  constructor(private prisma: PrismaService, private config: ConfigService) {
+  constructor(private prisma: PrismaService) {
 
   }
 
@@ -21,7 +20,7 @@ export class ArticleService {
   // 文章列表
   async findAll(page: number) {
     // 每页总数
-    const pageSize = +this.config.get('ARTICLE_PAGE_ROW')
+    const pageSize = +process.env.ARTICLE_PAGE_ROW
     // 文章列表
     const articles = await this.prisma.article.findMany({
       take: pageSize,
