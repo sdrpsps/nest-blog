@@ -18,7 +18,7 @@ export class AuthService {
                 password: await hash(dto.password)
             }
         })
-        return { message: "注册成功" }
+        return
     }
 
     // 登录
@@ -30,7 +30,7 @@ export class AuthService {
         })
         // 校验密码
         if (!(await verify(user.password, dto.password))) {
-            throw new HttpException({ message: { password: "密码错误" } }, HttpStatus.FORBIDDEN)
+            throw new HttpException({ password: "密码错误" }, HttpStatus.FORBIDDEN)
         }
         return this.token(user)
     }
@@ -43,8 +43,7 @@ export class AuthService {
                     name,
                     sub: id
                 })
-            },
-            message: "登录成功"
+            }
         }
     }
 }

@@ -19,6 +19,6 @@ async function bootstrap() {
   app.useStaticAssets('uploads', { prefix: '/uploads' })
   // 开启CORS
   app.enableCors()
-  await app.listen(process.env.PORT || 3000);
+  await app.listen(process.env.PORT || "8080");
 }
 bootstrap();
