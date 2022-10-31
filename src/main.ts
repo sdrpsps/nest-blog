@@ -17,6 +17,8 @@ async function bootstrap() {
   app.setGlobalPrefix('api')
   // 静态目录
   app.useStaticAssets('uploads', { prefix: '/uploads' })
-  await app.listen(3000);
+  // 开启CORS
+  app.enableCors()
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
