@@ -18,7 +18,6 @@ export class ArticleController {
 
   // 文章列表
   @Get()
-  @Auth()
   findAll(@Query('page') page: string) {
     if (!page) page = '1'
     return this.articleService.findAll(+page);
@@ -26,7 +25,6 @@ export class ArticleController {
 
   // 文章详情
   @Get(':id')
-  @Auth()
   findOne(@Param('id') id: string) {
     if (isNaN(+id)) {
       throw new HttpException({ id: '参数只能为数字' }, HttpStatus.UNPROCESSABLE_ENTITY)
