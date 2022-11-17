@@ -39,6 +39,7 @@ export class AuthService {
     async token({ name, id }) {
         return {
             data: {
+                name,
                 token: await this.jwt.signAsync({
                     name,
                     sub: id

@@ -9,4 +9,7 @@ export class CreateArticleDto {
 
     @IsNotEmpty({ message: "栏目ID不能为空" })
     categoryId: number
+
+    @IsNotEmpty({ message: "作者不能为空" })
+    author: string
 }
