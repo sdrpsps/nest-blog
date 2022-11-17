@@ -21,15 +21,19 @@ export class ArticleService {
   async findAll(page: number) {
     // 每页总数
     const pageSize = +process.env.ARTICLE_PAGE_ROW
+    // 文章总数
+    const total = await this.prisma.article.count()
+    const totalPage = Math.ceil(total / pageSize)
     // 文章列表
     const articles = await this.prisma.article.findMany({
       take: pageSize,
-      skip: (page - 1) * pageSize
+      skip: (page - 1) * pageSize,
+      orderBy: {
+        id: 'desc',
+      },
     })
-    // 文章总数
-    const total = await this.prisma.article.count()
     return {
-      meta: { currPage: page, pageSize, total, totalPage: Math.ceil(total / pageSize) },
+      meta: { currPage: page, pageSize, total, totalPage },
       data: articles,
     }
   }
