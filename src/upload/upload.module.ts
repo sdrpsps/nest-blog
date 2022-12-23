@@ -1,9 +1,9 @@
-import { Global, Module } from '@nestjs/common';
-import { UploadService } from './upload.service';
-import { UploadController } from './upload.controller';
-import { MulterModule } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
+import { Global, Module } from '@nestjs/common'
+import { UploadService } from './upload.service'
+import { UploadController } from './upload.controller'
+import { MulterModule } from '@nestjs/platform-express'
+import { diskStorage } from 'multer'
+import { extname } from 'path'
 
 @Global()
 @Module({
@@ -25,6 +25,6 @@ import { extname } from 'path';
     }),
   ],
   providers: [UploadService],
-  controllers: [UploadController]
+  controllers: [UploadController],
 })
-export class UploadModule { }
+export class UploadModule {}

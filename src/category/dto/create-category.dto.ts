@@ -1,6 +1,6 @@
-import { IsNotEmpty } from "class-validator";
+import { IsNotEmpty } from 'class-validator'
 
 export class CreateCategoryDto {
-    @IsNotEmpty({ message: "栏目标题不能为空" })
-    title: string
+  @IsNotEmpty({ message: '栏目标题不能为空' })
+  title: string
 }

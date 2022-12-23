@@ -1,12 +1,12 @@
-import { NestFactory } from '@nestjs/core';
-import { NestExpressApplication } from '@nestjs/platform-express';
-import { AppModule } from './app.module';
-import Validate from './common/validate';
-import { HttpExceptionFilter } from './http-exception.filter';
-import { TransformInterceptor } from './transform.interceptor';
+import { NestFactory } from '@nestjs/core'
+import { NestExpressApplication } from '@nestjs/platform-express'
+import { AppModule } from './app.module'
+import Validate from './common/validate'
+import { HttpExceptionFilter } from './http-exception.filter'
+import { TransformInterceptor } from './transform.interceptor'
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule)
   // 验证传入的参数是否符合条件
   app.useGlobalPipes(new Validate())
   // 全局拦截器
@@ -19,6 +19,6 @@ async function bootstrap() {
   app.useStaticAssets('uploads', { prefix: '/uploads' })
   // 开启CORS
   app.enableCors()
-  await app.listen(process.env.PORT || 8080);
+  await app.listen(process.env.PORT || 8080)
 }
-bootstrap();
+bootstrap()
